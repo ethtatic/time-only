@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State private var now = Date.now
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-#Preview {
-    ContentView()
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            Text(now, style: .time)
+                .font(.system(size: 72, weight: .thin, design: .monospaced))
+                .foregroundStyle(.white)
+                .monospacedDigit()
+        }
+        .onReceive(timer) { tick in now = tick }
+    }
 }
