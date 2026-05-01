@@ -6,20 +6,46 @@
 //
 
 import SwiftUI
-import Combine
 
 struct ContentView: View {
-    @State private var now = Date.now
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            Text(now, style: .time)
-                .font(.system(size: 72, weight: .thin, design: .monospaced))
-                .foregroundStyle(.white)
-                .monospacedDigit()
+        TimelineView(.periodic(from: .now, by: 5)) { context in
+            let now = context.date
+            let hours = String(format: "%02d", Calendar.current.component(.hour, from: now))
+            let minutes = String(format: "%02d", Calendar.current.component(.minute, from: now))
+
+            ZStack {
+                Color.dsBackground
+                    .ignoresSafeArea()
+
+                HStack(alignment: .center, spacing: Spacing.sm) {
+                    Text(hours)
+                        .font(.dsDisplay)
+                        .foregroundStyle(Color.dsPrimary)
+                        .tracking(-3.8)
+                        .monospacedDigit()
+
+                    SeparatorDots()
+
+                    Text(minutes)
+                        .font(.dsDisplay)
+                        .foregroundStyle(Color.dsPrimary)
+                        .tracking(-3.8)
+                        .monospacedDigit()
+                }
+            }
         }
-        .onReceive(timer) { tick in now = tick }
+    }
+}
+
+struct SeparatorDots: View {
+    var body: some View {
+        VStack(spacing: 18) {
+            Circle()
+                .frame(width: 8, height: 8)
+            Circle()
+                .frame(width: 8, height: 8)
+        }
+        .foregroundStyle(Color.dsAccent)
     }
 }
