@@ -1,0 +1,174 @@
+{
+  "version": "2.10",
+  "themes": {
+    "mode": ["light", "dark"]
+  },
+  "variables": {
+    "color.background": {
+      "type": "color",
+      "value": [
+        {"value": "#FAFAFA", "theme": {"mode": "light"}},
+        {"value": "#0F0F0F", "theme": {"mode": "dark"}}
+      ]
+    },
+    "color.surface": {
+      "type": "color",
+      "value": [
+        {"value": "#FFFFFF", "theme": {"mode": "light"}},
+        {"value": "#1A1A1A", "theme": {"mode": "dark"}}
+      ]
+    },
+    "color.primary": {
+      "type": "color",
+      "value": [
+        {"value": "#1A1A1A", "theme": {"mode": "light"}},
+        {"value": "#F5F5F5", "theme": {"mode": "dark"}}
+      ]
+    },
+    "color.secondary": {
+      "type": "color",
+      "value": [
+        {"value": "#8A8A8A", "theme": {"mode": "light"}},
+        {"value": "#6B6B6B", "theme": {"mode": "dark"}}
+      ]
+    },
+    "color.accent": {
+      "type": "color",
+      "value": "#FF6B35"
+    },
+    "color.border": {
+      "type": "color",
+      "value": [
+        {"value": "#E5E5E5", "theme": {"mode": "light"}},
+        {"value": "#2A2A2A", "theme": {"mode": "dark"}}
+      ]
+    },
+    "spacing.xs": {
+      "type": "number",
+      "value": 4
+    },
+    "spacing.sm": {
+      "type": "number",
+      "value": 8
+    },
+    "spacing.md": {
+      "type": "number",
+      "value": 16
+    },
+    "spacing.lg": {
+      "type": "number",
+      "value": 24
+    },
+    "spacing.xl": {
+      "type": "number",
+      "value": 40
+    },
+    "radius.sm": {
+      "type": "number",
+      "value": 8
+    },
+    "radius.md": {
+      "type": "number",
+      "value": 12
+    },
+    "radius.lg": {
+      "type": "number",
+      "value": 20
+    }
+  },
+  "children": [
+    {
+      "id": "separator-dot",
+      "name": "Separator Dot",
+      "type": "ellipse",
+      "reusable": true,
+      "width": 8,
+      "height": 8,
+      "fill": "$color.accent"
+    },
+    {
+      "id": "separator-dots",
+      "name": "Separator Dots",
+      "type": "frame",
+      "reusable": true,
+      "layout": "vertical",
+      "gap": 18,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "id": "dot-top",
+          "type": "ref",
+          "ref": "separator-dot"
+        },
+        {
+          "id": "dot-bottom",
+          "type": "ref",
+          "ref": "separator-dot"
+        }
+      ]
+    },
+    {
+      "id": "clock-digit",
+      "name": "Clock Digit",
+      "type": "text",
+      "reusable": true,
+      "content": "00",
+      "fontFamily": "System",
+      "fontSize": 96,
+      "fontWeight": "ultralight",
+      "fill": "$color.primary",
+      "letterSpacing": -3.8
+    },
+    {
+      "id": "screen-clock",
+      "name": "Clock Face",
+      "type": "frame",
+      "x": 0,
+      "y": 0,
+      "width": 393,
+      "height": 852,
+      "fill": "$color.background",
+      "layout": "none",
+      "theme": {"mode": "dark"},
+      "children": [
+        {
+          "id": "clock-display",
+          "name": "Clock Display",
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 852,
+          "layout": "horizontal",
+          "gap": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "hours",
+              "type": "ref",
+              "ref": "clock-digit",
+              "descendants": {
+                "": {"content": "09"}
+              }
+            },
+            {
+              "id": "separator",
+              "type": "ref",
+              "ref": "separator-dots"
+            },
+            {
+              "id": "minutes",
+              "type": "ref",
+              "ref": "clock-digit",
+              "descendants": {
+                "": {"content": "41"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

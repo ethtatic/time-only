@@ -1,0 +1,21 @@
+# Xcode
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# macOS
+.DS_Store
+
+# SwiftPM
+.build/
+.swiftpm/
+
+# Project-specific
+cowork/
+
+# Claude Code — local machine settings (permissions, not secrets, but still machine-specific)
+.claude/settings.local.json
