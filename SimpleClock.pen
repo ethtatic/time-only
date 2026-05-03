@@ -107,7 +107,6 @@
               "type": "frame",
               "id": "time-row",
               "name": "Time Row",
-              "layout": "horizontal",
               "gap": 8,
               "justifyContent": "center",
               "alignItems": "center",
@@ -147,11 +146,12 @@
           "x": 353,
           "y": 792,
           "name": "Settings Icon",
-          "fill": "$color.primary",
           "opacity": 0.2,
+          "fill": "$color.primary",
           "content": "⚙",
           "fontFamily": "System",
-          "fontSize": 20
+          "fontSize": 20,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -186,7 +186,6 @@
               "type": "frame",
               "id": "time-row-landscape",
               "name": "Time Row",
-              "layout": "horizontal",
               "gap": 8,
               "justifyContent": "center",
               "alignItems": "center",
@@ -475,6 +474,195 @@
               "cornerRadius": 16
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "R21R3",
+      "x": 1500,
+      "y": 400,
+      "name": "Icon — Light",
+      "width": 390,
+      "height": 390,
+      "fill": "#FAFAFA",
+      "layout": "horizontal",
+      "gap": 8,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "icon-light-hours",
+          "name": "hours",
+          "fill": "#1A1A1A",
+          "content": "10",
+          "fontFamily": "System",
+          "fontSize": 96,
+          "fontWeight": "ultralight"
+        },
+        {
+          "type": "frame",
+          "id": "icon-light-sep",
+          "name": "separator",
+          "layout": "vertical",
+          "gap": 18,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "icon-light-dot1",
+              "name": "dot",
+              "fill": "#FF6B35",
+              "width": 8,
+              "height": 8
+            },
+            {
+              "type": "ellipse",
+              "id": "icon-light-dot2",
+              "name": "dot",
+              "fill": "#FF6B35",
+              "width": 8,
+              "height": 8
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "icon-light-minutes",
+          "name": "minutes",
+          "fill": "#1A1A1A",
+          "content": "10",
+          "fontFamily": "System",
+          "fontSize": 96,
+          "fontWeight": "ultralight"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "yl7gA",
+      "x": 1500,
+      "y": 890,
+      "name": "Icon — Dark",
+      "width": 390,
+      "height": 390,
+      "fill": "#0F0F0F",
+      "layout": "horizontal",
+      "gap": 8,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "icon-dark-hours",
+          "name": "hours",
+          "fill": "#F5F5F5",
+          "content": "10",
+          "fontFamily": "System",
+          "fontSize": 96,
+          "fontWeight": "ultralight"
+        },
+        {
+          "type": "frame",
+          "id": "icon-dark-sep",
+          "name": "separator",
+          "layout": "vertical",
+          "gap": 18,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "icon-dark-dot1",
+              "name": "dot",
+              "fill": "#FF6B35",
+              "width": 8,
+              "height": 8
+            },
+            {
+              "type": "ellipse",
+              "id": "icon-dark-dot2",
+              "name": "dot",
+              "fill": "#FF6B35",
+              "width": 8,
+              "height": 8
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "icon-dark-minutes",
+          "name": "minutes",
+          "fill": "#F5F5F5",
+          "content": "10",
+          "fontFamily": "System",
+          "fontSize": 96,
+          "fontWeight": "ultralight"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "EXckJ",
+      "x": 1500,
+      "y": 1380,
+      "name": "Icon — Tinted",
+      "width": 390,
+      "height": 390,
+      "fill": "#F0F0F0",
+      "layout": "horizontal",
+      "gap": 8,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "icon-tinted-hours",
+          "name": "hours",
+          "fill": "#505050",
+          "content": "10",
+          "fontFamily": "System",
+          "fontSize": 96,
+          "fontWeight": "ultralight"
+        },
+        {
+          "type": "frame",
+          "id": "icon-tinted-sep",
+          "name": "separator",
+          "layout": "vertical",
+          "gap": 18,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "icon-tinted-dot1",
+              "name": "dot",
+              "fill": "#505050",
+              "width": 8,
+              "height": 8
+            },
+            {
+              "type": "ellipse",
+              "id": "icon-tinted-dot2",
+              "name": "dot",
+              "fill": "#505050",
+              "width": 8,
+              "height": 8
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "icon-tinted-minutes",
+          "name": "minutes",
+          "fill": "#505050",
+          "content": "10",
+          "fontFamily": "System",
+          "fontSize": 96,
+          "fontWeight": "ultralight"
         }
       ]
     }
