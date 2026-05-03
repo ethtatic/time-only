@@ -11,30 +11,58 @@ struct ContentView: View {
     @EnvironmentObject private var settings: AppSettings
     @State private var showSettings = false
 
+    private var tickInterval: Double {
+        settings.showSeconds || settings.blinkingColon ? 1.0 : 60.0
+    }
+
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 5)) { context in
+        TimelineView(.periodic(from: .now, by: tickInterval)) { context in
             let now = context.date
-            let hours = String(format: "%02d", Calendar.current.component(.hour, from: now))
-            let minutes = String(format: "%02d", Calendar.current.component(.minute, from: now))
+            let cal = Calendar.current
+            let hours   = String(format: "%02d", cal.component(.hour,   from: now))
+            let minutes = String(format: "%02d", cal.component(.minute, from: now))
+            let seconds = String(format: "%02d", cal.component(.second, from: now))
+            let secondInt = cal.component(.second, from: now)
+
+            let dateString: String = {
+                let fmt = DateFormatter()
+                fmt.dateFormat = "EEEE, d MMMM"
+                return fmt.string(from: now)
+            }()
 
             ZStack {
                 Color.dsBackground
                     .ignoresSafeArea()
 
-                HStack(alignment: .center, spacing: Spacing.sm) {
-                    Text(hours)
-                        .font(.dsDisplay)
-                        .foregroundStyle(Color.dsPrimary)
-                        .tracking(-3.8)
-                        .monospacedDigit()
+                VStack(spacing: Spacing.md) {
+                    HStack(alignment: .lastTextBaseline, spacing: Spacing.sm) {
+                        Text(hours)
+                            .font(.dsDisplay)
+                            .foregroundStyle(Color.dsPrimary)
+                            .tracking(-3.8)
+                            .monospacedDigit()
 
-                    SeparatorDots()
+                        SeparatorDots(blinking: settings.blinkingColon, second: secondInt)
 
-                    Text(minutes)
-                        .font(.dsDisplay)
-                        .foregroundStyle(Color.dsPrimary)
-                        .tracking(-3.8)
-                        .monospacedDigit()
+                        Text(minutes)
+                            .font(.dsDisplay)
+                            .foregroundStyle(Color.dsPrimary)
+                            .tracking(-3.8)
+                            .monospacedDigit()
+
+                        if settings.showSeconds {
+                            Text(":\(seconds)")
+                                .font(.dsTitle)
+                                .foregroundStyle(Color.dsSecondary)
+                                .monospacedDigit()
+                        }
+                    }
+
+                    if settings.showDate {
+                        Text(dateString)
+                            .font(.dsCaption)
+                            .foregroundStyle(Color.dsSecondary)
+                    }
                 }
 
                 if settings.showSettingsIcon {
@@ -66,13 +94,16 @@ struct ContentView: View {
 }
 
 struct SeparatorDots: View {
+    var blinking: Bool = false
+    var second: Int = 0
+
     var body: some View {
         VStack(spacing: 18) {
-            Circle()
-                .frame(width: 8, height: 8)
-            Circle()
-                .frame(width: 8, height: 8)
+            Circle().frame(width: 8, height: 8)
+            Circle().frame(width: 8, height: 8)
         }
         .foregroundStyle(Color.dsAccent)
+        .opacity(blinking && second % 2 != 0 ? 0 : 1)
+        .animation(.easeInOut(duration: 0.25), value: second)
     }
 }
