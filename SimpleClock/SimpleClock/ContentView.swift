@@ -11,6 +11,12 @@ struct ContentView: View {
     @EnvironmentObject private var settings: AppSettings
     @State private var showSettings = false
 
+    private static let dateFormatter: DateFormatter = {
+        let fmt = DateFormatter()
+        fmt.dateFormat = "EEEE, d MMMM"
+        return fmt
+    }()
+
     private var tickInterval: Double {
         settings.showSeconds || settings.blinkingColon ? 1.0 : 60.0
     }
@@ -19,16 +25,10 @@ struct ContentView: View {
         TimelineView(.periodic(from: .now, by: tickInterval)) { context in
             let now = context.date
             let cal = Calendar.current
-            let hours   = String(format: "%02d", cal.component(.hour,   from: now))
+            let hours  = String(format: "%02d", cal.component(.hour,   from: now))
             let minutes = String(format: "%02d", cal.component(.minute, from: now))
-            let seconds = String(format: "%02d", cal.component(.second, from: now))
-            let secondInt = cal.component(.second, from: now)
-
-            let dateString: String = {
-                let fmt = DateFormatter()
-                fmt.dateFormat = "EEEE, d MMMM"
-                return fmt.string(from: now)
-            }()
+            let second  = cal.component(.second, from: now)
+            let seconds = String(format: "%02d", second)
 
             ZStack {
                 Color.dsBackground
@@ -42,7 +42,7 @@ struct ContentView: View {
                             .tracking(-3.8)
                             .monospacedDigit()
 
-                        SeparatorDots(blinking: settings.blinkingColon, second: secondInt)
+                        SeparatorDots(blinking: settings.blinkingColon, second: second)
 
                         Text(minutes)
                             .font(.dsDisplay)
@@ -59,7 +59,7 @@ struct ContentView: View {
                     }
 
                     if settings.showDate {
-                        Text(dateString)
+                        Text(Self.dateFormatter.string(from: now))
                             .font(.dsCaption)
                             .foregroundStyle(Color.dsSecondary)
                     }
@@ -79,17 +79,17 @@ struct ContentView: View {
                     }
                 }
             }
-            .gesture(
-                LongPressGesture(minimumDuration: 0.5)
-                    .onEnded { _ in showSettings = true }
-            )
-            .sheet(isPresented: $showSettings) {
-                SettingsView()
-                    .environmentObject(settings)
-                    .presentationDetents([.medium])
-            }
-            .preferredColorScheme(settings.darkMode.map { $0 ? .dark : .light })
         }
+        .gesture(
+            LongPressGesture(minimumDuration: 0.5)
+                .onEnded { _ in showSettings = true }
+        )
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+                .environmentObject(settings)
+                .presentationDetents([.medium])
+        }
+        .preferredColorScheme(settings.darkMode.map { $0 ? .dark : .light })
     }
 }
 
