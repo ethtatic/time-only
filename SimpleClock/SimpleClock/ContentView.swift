@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject private var settings: AppSettings
+    @State private var showSettings = false
+
     var body: some View {
         TimelineView(.periodic(from: .now, by: 5)) { context in
             let now = context.date
@@ -33,6 +36,29 @@ struct ContentView: View {
                         .tracking(-3.8)
                         .monospacedDigit()
                 }
+
+                if settings.showSettingsIcon {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Image(systemName: "gearshape")
+                                .font(.system(size: 20))
+                                .foregroundStyle(Color.dsPrimary.opacity(0.2))
+                                .padding(Spacing.xl)
+                                .onTapGesture { showSettings = true }
+                        }
+                    }
+                }
+            }
+            .gesture(
+                LongPressGesture(minimumDuration: 0.5)
+                    .onEnded { _ in showSettings = true }
+            )
+            .sheet(isPresented: $showSettings) {
+                SettingsView()
+                    .environmentObject(settings)
+                    .presentationDetents([.medium])
             }
         }
     }
