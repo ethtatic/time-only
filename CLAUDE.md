@@ -17,9 +17,10 @@ Slash commands are in `.claude/commands/`. Skills are in `skills/`.
 |---------|-------------|
 | `/spec` | Before starting any new feature — clarify and document requirements |
 | `/plan` | After spec — decompose into tasks, output `tasks/plan.md` + `tasks/todo.md` |
-| `/build` | Implement tasks incrementally with TDD |
+| _(design)_ | **Before build** — update `SimpleClock.pen` with new screens, components, and states |
+| `/build` | After design — implement tasks incrementally with TDD |
 | `/test` | Write failing tests first; use Prove-It pattern for bug fixes |
-| `/review` | Five-axis review before every merge |
+| `/review` | Five-axis review after build, before merge |
 | `/code-simplify` | Reduce complexity without changing behavior |
 | `/ship` | Pre-launch checklist before App Store submission |
 
