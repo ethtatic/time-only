@@ -60,6 +60,7 @@ struct ContentView: View {
                     .environmentObject(settings)
                     .presentationDetents([.medium])
             }
+            .preferredColorScheme(settings.darkMode.map { $0 ? .dark : .light })
         }
     }
 }
