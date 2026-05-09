@@ -35,7 +35,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: Spacing.md) {
-                    HStack(alignment: .lastTextBaseline, spacing: Spacing.sm) {
+                    HStack(alignment: .center, spacing: Spacing.sm) {
                         Text(hours)
                             .font(.dsDisplay)
                             .foregroundStyle(Color.dsPrimary)
@@ -43,6 +43,7 @@ struct ContentView: View {
                             .monospacedDigit()
 
                         SeparatorDots(blinking: settings.blinkingColon, second: second)
+                            .padding(.leading, 6)
 
                         Text(minutes)
                             .font(.dsDisplay)
