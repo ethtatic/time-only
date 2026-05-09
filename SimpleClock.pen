@@ -21,6 +21,12 @@
       "reusable": true,
       "layout": "vertical",
       "gap": 18,
+      "padding": [
+        0,
+        0,
+        0,
+        6
+      ],
       "justifyContent": "center",
       "alignItems": "center",
       "children": [
@@ -486,7 +492,6 @@
       "width": 390,
       "height": 390,
       "fill": "#FAFAFA",
-      "layout": "horizontal",
       "gap": 8,
       "justifyContent": "center",
       "alignItems": "center",
@@ -507,6 +512,12 @@
           "name": "separator",
           "layout": "vertical",
           "gap": 18,
+          "padding": [
+            0,
+            0,
+            0,
+            6
+          ],
           "justifyContent": "center",
           "alignItems": "center",
           "children": [
@@ -549,7 +560,6 @@
       "width": 390,
       "height": 390,
       "fill": "#0F0F0F",
-      "layout": "horizontal",
       "gap": 8,
       "justifyContent": "center",
       "alignItems": "center",
@@ -570,6 +580,12 @@
           "name": "separator",
           "layout": "vertical",
           "gap": 18,
+          "padding": [
+            0,
+            0,
+            0,
+            6
+          ],
           "justifyContent": "center",
           "alignItems": "center",
           "children": [
@@ -612,7 +628,6 @@
       "width": 390,
       "height": 390,
       "fill": "#F0F0F0",
-      "layout": "horizontal",
       "gap": 8,
       "justifyContent": "center",
       "alignItems": "center",
