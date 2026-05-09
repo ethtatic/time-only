@@ -27,7 +27,7 @@ struct SettingsView: View {
                     ColorPicker("Colon Color", selection: Binding(
                         get: { settings.colonColor ?? .dsAccent },
                         set: { settings.colonColor = $0 }
-                    ))
+                    ), supportsOpacity: false)
 
                     if settings.colonColor != nil {
                         Button("Reset to Default") {
