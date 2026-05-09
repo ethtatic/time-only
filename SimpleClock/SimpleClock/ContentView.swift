@@ -42,7 +42,7 @@ struct ContentView: View {
                             .tracking(-3.8)
                             .monospacedDigit()
 
-                        SeparatorDots(blinking: settings.blinkingColon, second: second)
+                        SeparatorDots(blinking: settings.blinkingColon, second: second, color: settings.colonColor ?? .dsAccent)
                             .padding(.leading, 6)
 
                         Text(minutes)
@@ -97,13 +97,14 @@ struct ContentView: View {
 struct SeparatorDots: View {
     var blinking: Bool = false
     var second: Int = 0
+    var color: Color = .dsAccent
 
     var body: some View {
         VStack(spacing: 18) {
             Circle().frame(width: 8, height: 8)
             Circle().frame(width: 8, height: 8)
         }
-        .foregroundStyle(Color.dsAccent)
+        .foregroundStyle(color)
         .opacity(blinking && second % 2 != 0 ? 0 : 1)
         .animation(.easeInOut(duration: 0.25), value: second)
     }

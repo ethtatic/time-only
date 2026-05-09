@@ -33,6 +33,15 @@ extension Color {
             traits.userInterfaceStyle == .dark ? UIColor(dark) : UIColor(light)
         })
     }
+
+    var rgbaComponents: [Double]? {
+        guard let components = UIColor(self).cgColor.components else { return nil }
+        let r = Double(components[0])
+        let g = Double(components.count >= 3 ? components[1] : components[0])
+        let b = Double(components.count >= 3 ? components[2] : components[0])
+        let a = Double(components.count >= 4 ? components[3] : components.count == 2 ? components[1] : 1.0)
+        return [r, g, b, a]
+    }
 }
 
 // MARK: - Typography

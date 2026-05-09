@@ -18,7 +18,7 @@ struct SimpleClockApp: App {
                 .environmentObject(settings)
                 .statusBarHidden()
         }
-        .onChange(of: scenePhase) { _, phase in
+        .onChange(of: scenePhase) { phase in
             UIApplication.shared.isIdleTimerDisabled = (phase == .active)
         }
     }

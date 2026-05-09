@@ -23,6 +23,18 @@ struct SettingsView: View {
 
                 Section("Clock") {
                     Toggle("Blinking Colon", isOn: $settings.blinkingColon)
+
+                    ColorPicker("Colon Color", selection: Binding(
+                        get: { settings.colonColor ?? .dsAccent },
+                        set: { settings.colonColor = $0 }
+                    ))
+
+                    if settings.colonColor != nil {
+                        Button("Reset to Default") {
+                            settings.colonColor = nil
+                        }
+                        .foregroundStyle(.secondary)
+                    }
                 }
 
                 Section("Interface") {

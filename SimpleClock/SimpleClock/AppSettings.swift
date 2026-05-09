@@ -5,6 +5,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 final class AppSettings: ObservableObject {
 
@@ -26,6 +27,17 @@ final class AppSettings: ObservableObject {
         didSet { defaults.set(showSettingsIcon, forKey: Keys.showSettingsIcon) }
     }
 
+    /// nil = use default dsAccent color
+    @Published var colonColor: Color? {
+        didSet {
+            if let comps = colonColor?.rgbaComponents {
+                defaults.set(comps, forKey: Keys.colonColor)
+            } else {
+                defaults.removeObject(forKey: Keys.colonColor)
+            }
+        }
+    }
+
     /// nil = follow system; true = force dark; false = force light
     @Published var darkMode: Bool? {
         didSet {
@@ -44,6 +56,11 @@ final class AppSettings: ObservableObject {
         self.blinkingColon   = defaults.object(forKey: Keys.blinkingColon)   as? Bool ?? false
         self.showSettingsIcon = defaults.object(forKey: Keys.showSettingsIcon) as? Bool ?? true
         self.darkMode        = defaults.object(forKey: Keys.darkMode)        as? Bool
+        if let comps = defaults.object(forKey: Keys.colonColor) as? [Double], comps.count == 4 {
+            self.colonColor = Color(red: comps[0], green: comps[1], blue: comps[2], opacity: comps[3])
+        } else {
+            self.colonColor = nil
+        }
     }
 
     enum Keys {
@@ -52,5 +69,6 @@ final class AppSettings: ObservableObject {
         static let blinkingColon    = "simpleclock.blinkingColon"
         static let showSettingsIcon = "simpleclock.showSettingsIcon"
         static let darkMode         = "simpleclock.darkMode"
+        static let colonColor       = "simpleclock.colonColor"
     }
 }
