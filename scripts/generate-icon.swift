@@ -51,11 +51,12 @@ let canvas: CGFloat = 1024
 
 let appFont   = makeFont(96)
 let appDigitW = measureWidth("10", font: appFont)
-let appTotalW = 2 * appDigitW + 2 * 8 + 8  // two digit groups + two gaps + dot column
+let appTotalW = 2 * appDigitW + 2 * 8 + 6 + 8  // two digit groups + two gaps + left pad + dot column
 
 let scale    = (canvas * 0.80) / appTotalW
 let fontSize = 96 * scale
 let gap      =  8 * scale   // gap between digit group and dot column
+let leftPad  =  6 * scale   // extra leading space before dot column (matches app padding)
 let dotSize  =  8 * scale   // dot diameter
 let dotGap   = 18 * scale   // gap between the two dots
 
@@ -102,7 +103,7 @@ func render(_ v: Variant, to url: URL) {
     let baseline = canvas / 2 - (asc - desc) / 2
 
     // Horizontal: center full layout
-    let totalW = 2 * digitW + 2 * gap + dotSize
+    let totalW = 2 * digitW + 2 * gap + leftPad + dotSize
     let x0 = (canvas - totalW) / 2
 
     // Build an attributed CTLine with font + foreground color
@@ -122,7 +123,7 @@ func render(_ v: Variant, to url: URL) {
     CTLineDraw(attrLine("10", color: fgColor), ctx)
 
     // Separator dots — two circles, vertically centered on canvas
-    let dotX      = x0 + digitW + gap
+    let dotX      = x0 + digitW + gap + leftPad
     let dotTotalH = 2 * dotSize + dotGap
     let dotY0     = canvas / 2 - dotTotalH / 2
     ctx.setFillColor(cgColor(hex: v.dot))
