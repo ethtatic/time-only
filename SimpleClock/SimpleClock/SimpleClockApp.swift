@@ -15,6 +15,7 @@ struct SimpleClockApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(settings)
+                .statusBarHidden()
         }
     }
 }
