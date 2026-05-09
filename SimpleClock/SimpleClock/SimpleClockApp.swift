@@ -10,12 +10,16 @@ import SwiftUI
 @main
 struct SimpleClockApp: App {
     @StateObject private var settings = AppSettings()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(settings)
                 .statusBarHidden()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            UIApplication.shared.isIdleTimerDisabled = (phase == .active)
         }
     }
 }
